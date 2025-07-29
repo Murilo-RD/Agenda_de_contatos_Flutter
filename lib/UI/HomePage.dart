@@ -1,7 +1,4 @@
-import 'package:agenda_de_contatos/dao/ConexaoBanco.dart';
-import 'package:agenda_de_contatos/dao/ContatoDAO.dart';
-import 'package:agenda_de_contatos/domain/Contato.dart';
-import 'package:flutter/cupertino.dart';
+import 'controle_interacao/CI_HomePage.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,7 +9,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  ContatoDAO _dao = ContatoDAO();
+
+  final CIHomePage _controleInteracao = CIHomePage();
+
+
+  @override
+  void initState() {
+    super.initState();
+    _controleInteracao.addListener((){
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +39,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+        children: _controleInteracao.getContatoCards(),
       )
     );
   }

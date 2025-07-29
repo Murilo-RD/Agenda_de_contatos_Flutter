@@ -18,7 +18,7 @@ class ContatoDAO{
 
   Future<Contato> save(Contato contato) async{
     Database? dbContato = await ConexaoBanco().db;
-    contato.id = await dbContato?.insert("contato", toMap(contato));
+    contato.id = (await dbContato?.insert("contato", toMap(contato)))!;
     return contato;
   }
 
