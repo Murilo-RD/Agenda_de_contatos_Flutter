@@ -40,6 +40,16 @@ class _ContatoPageState extends State<ContatoPage> {
             Icons.save,
             color: Color(0xFFE5E5E5),
           ),
-        ));
+        ),
+        body: Column(
+            children: [
+              SizedBox(height: 30),
+              CircleAvatar()
+
+          ]
+      )
+
+    );
+
   }
 }
