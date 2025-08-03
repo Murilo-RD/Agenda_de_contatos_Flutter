@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../domain/Contato.dart';
+import 'Widgets/CampoDeTexto.dart';
 import 'controle_interacao/CI_ContatoPage.dart';
 
 class ContatoPage extends StatefulWidget {
@@ -41,14 +44,44 @@ class _ContatoPageState extends State<ContatoPage> {
             color: Color(0xFFE5E5E5),
           ),
         ),
-        body: Column(
+        body: SingleChildScrollView(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
             children: [
-              SizedBox(height: 30),
-              CircleAvatar()
-
-          ]
-      )
-
+              GestureDetector(
+                child:Container(
+                  width: 140,
+                  height: 140,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF1E1E1E),
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: _controleInteracao.editContato!.foto != null
+                          ? FileImage(_controleInteracao.editContato!.foto as File)
+                          : AssetImage("images/contacts.png"),
+                    ),
+                  ),
+                )
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 20),
+              ),
+              CampoDeTexto(label: "Nome"),
+              Padding(
+                padding: EdgeInsets.only(top: 20),
+              ),
+              CampoDeTexto(label: "Telefone"),
+              Padding(
+                padding: EdgeInsets.only(top: 20),
+              ),
+              CampoDeTexto(label: "Email"),
+              Padding(
+                padding: EdgeInsets.only(top: 20),
+              ),
+            ]
+          )
+        )
     );
 
   }
